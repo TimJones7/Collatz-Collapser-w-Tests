@@ -40,26 +40,39 @@ namespace Collatz.Tests.ServiceTests
         }
 
 
+        [Theory]
+        [InlineData(6)]
+        [InlineData(12)]
+        [InlineData(34)]
+        [InlineData(23)]
+        [InlineData(234)]
+        [InlineData(3465)]
+        public void CollatzService_PrintLeadingDigitDistributionFrom_PrintsDistribution(int x)
+        {
+            //Arrange
+            var _collatz = serviceProvider.GetRequiredService<ICollatzService>();
+            //Act
+            _collatz.Print_Leading_Digit_Distribution_From(x);
+            //Assert
 
-        //public void CollatzService_PrintLeadingDigitDistributionFrom_PrintsDistribution(int a, int b, int expected)
-        //{
-        //    //Arrange
-
-        //    //Act
-
-        //    //Assert
-        //}
+        }
 
 
-
-        //public void CollatzService_PrintCollatzChainFromNumber_PrintsChain(int a, int b, int expected)
-        //{
-        //    //Arrange
-
-        //    //Act
-
-        //    //Assert
-        //}
+        [Theory]
+        [InlineData(6)]
+        [InlineData(12)]
+        [InlineData(34)]
+        [InlineData(23)]
+        [InlineData(234)]
+        [InlineData(3465)]
+        public void CollatzService_PrintCollatzChainFromNumber_PrintsChain(int x)
+        {
+            //  Arrange
+            var _collatz = serviceProvider.GetRequiredService<ICollatzService>();
+            //  Act
+            _collatz.Print_Collatz_Chain_From_Number(x);
+            //  Assert
+        }
 
 
 
