@@ -10,5 +10,7 @@ namespace Collatz.Tests.CollatzTreeTests
 {
     public class DigitDistributionTests
     {
+
+        //  Not real sure how to test this class yet
     }
 }

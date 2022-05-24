@@ -34,11 +34,6 @@ namespace Collatz.CollatzTree
             Console.WriteLine($"Numbers of 9's: {this.num_Nines}");
         }
 
-
-
-        //  create method to tally up counts
-        //  take starting 'Number' as func argument
-
         public void tallyDigits(Number num)
         {
             //  Dummy var for current Number
@@ -81,7 +76,6 @@ namespace Collatz.CollatzTree
                 tallyDigits(current.Next_Number);
             }
         }
-
 
         public void getTallyFromNum(CollatzTree tree, int x)
         {

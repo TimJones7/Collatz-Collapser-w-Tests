@@ -16,20 +16,32 @@ CollatzTree tree = new CollatzTree();
 //Console.WriteLine($"Leading Digit Distribution from {101} => 1");
 //disty.printDistribution();
 
-int x = 101;
+int x = 10;
+int y = 12;
+int z = 13;
 
 Console.WriteLine($"Printing Tree {x}:");
 tree.PrintFromNumber(x);
 Console.WriteLine(" ");
 
-tree._distribution.getTallyFromNum(tree, x);
+//tree._distribution.getTallyFromNum(tree, x);
 Console.WriteLine($"Leading Digit Distribution from {x} => 1");
-tree._distribution.printDistribution();
+//tree._distribution.printDistribution();
+tree.printdistributionFrom(x);
 Console.WriteLine(" ");
 
+Console.WriteLine($"Printing Tree {y}:");
+tree.PrintFromNumber(y);
+Console.WriteLine(" ");
+Console.WriteLine($"Leading Digit Distribution from {y} => 1");
+//tree._distribution.printDistribution();
+tree.printdistributionFrom(y);
+Console.WriteLine(" ");
 
-int y = tree.findCommonAncestor(1360, 75).value;
-
-Console.WriteLine("Finding common ancestor between 75 and 1360");
-Console.WriteLine(y);
-
+Console.WriteLine($"Printing Tree {z}:");
+tree.PrintFromNumber(z);
+Console.WriteLine(" ");
+Console.WriteLine($"Leading Digit Distribution from {z} => 1");
+//tree._distribution.printDistribution();
+tree.printdistributionFrom(z);
+Console.WriteLine(" ");

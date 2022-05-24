@@ -14,6 +14,8 @@ namespace Collatz.CollatzTree
         //  Keep track of numbers seen and what Number object it belongs to
         public SortedList<int, Number>? Numbers_Seen { get; set; }
 
+
+        //  Do not init in Constructor... only create object when needed
         public DigitDistribution _distribution;
 
         //  Constructor auto-sets the bottom node
@@ -24,7 +26,6 @@ namespace Collatz.CollatzTree
             bottom = new Number(1);
             bottom.stepsToOne = 0;
             Numbers_Seen.Add(1, bottom);
-            _distribution = new DigitDistribution();
 
         }
 
@@ -115,10 +116,7 @@ namespace Collatz.CollatzTree
             return (3 * x + 1);
         }
 
-        //  Create methods to fill in "steps to One" variable
-        //  Have function take int argument
-        //  Check for completed chain, if complete fill array with path
-        //  Then traverse path from 1 -> x ++Steps each time 
+        //  Refactored, shouldn't double-count now.
         public void fillSteps(int x)
         {
             //  Check if number has been seen.
@@ -134,7 +132,10 @@ namespace Collatz.CollatzTree
             //  Since '1' is set, we don't have to start at "bottom"
             for (int i = path.Count - 2; i >= 0; i--)
             {
-                path[i].stepsToOne = path[i + 1].stepsToOne + 1;
+                if (path[i].stepsToOne == 0)
+                {
+                    path[i].stepsToOne = path[i + 1].stepsToOne + 1;
+                }
             }
         }
 
@@ -212,6 +213,14 @@ namespace Collatz.CollatzTree
         }
 
 
+        //  Creating the object we need only when we need it
+        //  This will also prevent double-counting digits when traversing multiple paths
+        public void printdistributionFrom(int x)
+        {
+            _distribution = new DigitDistribution();
+            _distribution.getTallyFromNum(this, x);
+            _distribution.printDistribution();
+        }
 
 
 
