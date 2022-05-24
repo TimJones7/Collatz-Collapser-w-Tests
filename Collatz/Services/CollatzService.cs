@@ -12,9 +12,16 @@ namespace Collatz.Services
     {
         private readonly CollatzTree _collatz;
 
-        public CollatzService(CollatzTree collatz)
+
+        //public CollatzService(CollatzTree collatz)
+        //{
+        //    _collatz = collatz;
+        //}
+
+        // Newing up the object here, because I guess Dependency Injection in a console app is different from MVC?
+        public CollatzService()
         {
-            _collatz = collatz;
+            _collatz = new CollatzTree();
         }
 
         public Number Find_Least_Common_Ancestor(int a, int b)

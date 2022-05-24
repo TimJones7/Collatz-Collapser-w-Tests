@@ -1,17 +1,52 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Microsoft.Extensions.DependencyInjection;
 using Collatz.Collatz;
 using Collatz.Services;
+using Collatz.Interfaces;
 
 Console.WriteLine("Hello, Collatz!");
 Console.WriteLine(" ");
 
-CollatzTree tree = new CollatzTree();
-CollatzService CollatzService = new CollatzService(tree);
 
 
-int x = CollatzService.Find_Least_Common_Ancestor(69, 1280).value;
 
-Console.WriteLine($"The Least Common Ancestor is: {x}");
+
+var serviceProvider = new ServiceCollection()
+    .AddSingleton<ICollatzService, CollatzService>()
+    .BuildServiceProvider();
+
+
+var collatz = serviceProvider.GetRequiredService<ICollatzService>();
+
+collatz.Print_From_Number(10);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//CollatzTree tree = new CollatzTree();
+//CollatzService CollatzService = new CollatzService(tree);
+
+
+//int x = CollatzService.Find_Least_Common_Ancestor(69, 1280).value;
+
+//Console.WriteLine($"The Least Common Ancestor is: {x}");
 
 //Console.WriteLine("Printing Tree 101:");
 //tree.PrintFromNumber(101);
