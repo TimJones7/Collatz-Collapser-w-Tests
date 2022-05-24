@@ -172,44 +172,31 @@ namespace Collatz.CollatzTree
             //  Vars we need and init
             Number left = Numbers_Seen[a];
             Number right = Numbers_Seen[b];
-            //  We need to keep track of all the numbers we have seen, 
-            //  This way we can walk from each path to one and iterate
-            //  each Number by one step each time and not worry about
-            //  walking too far.
-            SortedList<int, Number> nums_seen = new SortedList<int, Number>();
 
-            //  Add initial values
-            nums_seen.Add(a, left);
-            nums_seen.Add(b, right);
-
-            //  While each numbers next number value does not exist as a key in the 
-            //  list then we need to go to the next number
-            //  As soon as we reach a value whose next_number == a key that exists, we're done
-            //  This only runs as long as both keys have not been seen
-            while (!Numbers_Seen.ContainsKey(left.Next_Number.value) || !Numbers_Seen.ContainsKey(right.Next_Number.value))
+            //  When looking at two paths, the LCA will have a 'steps to one' value less than the smallest number's steps-to-one value
+            //  We need to start looking when the steps to one values are the same. 
+            while(left.stepsToOne != right.stepsToOne)
             {
-                //  set left and right to next number
+                // Get the bigger object and walk toward 1
+                if(left.stepsToOne > right.stepsToOne)
+                {
+                    left = left.Next_Number;
+                }
+                if(right.stepsToOne > left.stepsToOne)
+                {
+                    right = right.Next_Number;
+                }
+            }
+
+            //  At this point, both numbers should be the same steps from one
+            //  While left and right are not the same number, step them both toward 1
+            while(left.value != right.value)
+            {
                 left = left.Next_Number;
                 right = right.Next_Number;
-                //  Add next numbers to 'seen' list
-                nums_seen.Add(left.value, left);
-                nums_seen.Add(right.value, right);
             }
-
-            //  This part should only run if we arrive at a number we've seen
-            //  At this point, left/right should have stopped walking whenever
-            //  it reached the nearest common ancestor I think
-            //  Now we need to get which one it is. 
-            if (Numbers_Seen.ContainsKey(left.Next_Number.value))
-            {
-                return left.Next_Number;
-            }
-            if (Numbers_Seen.ContainsKey(right.Next_Number.value))
-            {
-                return right.Next_Number;
-            }
-            //  Making the function work, return bottom {1} if all else fails
-            return bottom;
+            return left;
+           
         }
 
 

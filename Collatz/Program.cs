@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Collatz.CollatzTree;
 
-Console.WriteLine("Hello, Collatz!");
 
 Console.WriteLine("Hello, Collatz!");
 Console.WriteLine(" ");
@@ -45,3 +44,20 @@ Console.WriteLine($"Leading Digit Distribution from {z} => 1");
 //tree._distribution.printDistribution();
 tree.printdistributionFrom(z);
 Console.WriteLine(" ");
+
+
+int i = tree.findCommonAncestor(1360, 75).value;
+
+Console.WriteLine("Finding common ancestor between 75 and 1360");
+Console.WriteLine(i);
+
+int j = tree.findCommonAncestor(69, 1280).value;
+
+Console.WriteLine("Finding common ancestor between 69 and 1280");
+Console.WriteLine(j);
+
+int k = tree.findCommonAncestor(11, 21).value;
+
+Console.WriteLine("Finding common ancestor between 11 and 21");
+Console.WriteLine(k);
+
