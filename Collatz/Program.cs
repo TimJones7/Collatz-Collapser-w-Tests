@@ -7,21 +7,22 @@ using Collatz.Interfaces;
 Console.WriteLine("Hello, Collatz!");
 Console.WriteLine(" ");
 
-
-
-
-
+//  Set up Dependencies for program
 var serviceProvider = new ServiceCollection()
     .AddSingleton<ICollatzService, CollatzService>()
     .BuildServiceProvider();
 
-
+//  Access service
 var collatz = serviceProvider.GetRequiredService<ICollatzService>();
 
+//  Test Service Functions:
+//  1
 collatz.Print_From_Number(10);
-
-
-
+//  2
+int x = collatz.Find_Least_Common_Ancestor(69, 1280).value;
+Console.WriteLine(x);
+//  3
+collatz.Print_Distribution_From(101);
 
 
 
