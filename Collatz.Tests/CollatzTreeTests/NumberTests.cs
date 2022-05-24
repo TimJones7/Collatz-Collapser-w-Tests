@@ -26,8 +26,6 @@ namespace Collatz.Tests.CollatzTreeTests
             number.Leading_Digit.Should().Be(expected);
         }
 
-
-
         [Theory]
         [InlineData(204, false)]
         [InlineData(14, false)]
@@ -47,8 +45,5 @@ namespace Collatz.Tests.CollatzTreeTests
             //  Assert
             result.isPerfectSquare.Should().Be(expected);
         }
-
-
-
     }
 }
