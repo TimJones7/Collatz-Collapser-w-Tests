@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collatz", "Collatz.csproj", "{237224BC-6CE2-4115-8EF0-1274F329B1CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collatz.Tests", "..\Collatz.Tests\Collatz.Tests.csproj", "{A649AB09-BF3B-4C55-9063-34624DB7FBFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{237224BC-6CE2-4115-8EF0-1274F329B1CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{237224BC-6CE2-4115-8EF0-1274F329B1CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{237224BC-6CE2-4115-8EF0-1274F329B1CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{237224BC-6CE2-4115-8EF0-1274F329B1CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A649AB09-BF3B-4C55-9063-34624DB7FBFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A649AB09-BF3B-4C55-9063-34624DB7FBFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A649AB09-BF3B-4C55-9063-34624DB7FBFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A649AB09-BF3B-4C55-9063-34624DB7FBFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B5C8432-AEBE-4347-B8E3-AD5B620D97CA}
+	EndGlobalSection
+EndGlobal
