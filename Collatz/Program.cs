@@ -32,3 +32,4 @@ int y = tree.findCommonAncestor(1360, 75).value;
 
 Console.WriteLine("Finding common ancestor between 75 and 1360");
 Console.WriteLine(y);
+
