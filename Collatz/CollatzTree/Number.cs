@@ -36,7 +36,7 @@ namespace Collatz.CollatzTree
         private bool isNumberSquare(int x)
         {
             double sRoot = Math.Sqrt(x);
-            return (sRoot * sRoot == x);
+            return ((sRoot * sRoot) == x);
         }
 
     }
