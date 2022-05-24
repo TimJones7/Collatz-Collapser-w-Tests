@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Collatz.CollatzTree
+namespace Collatz.Collatz
 {
     public class CollatzTree
     {

@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Collatz.CollatzTree;
+using Collatz.Collatz;
 
 
 Console.WriteLine("Hello, Collatz!");
