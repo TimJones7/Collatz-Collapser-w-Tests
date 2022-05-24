@@ -31,12 +31,11 @@ namespace Collatz.Tests.ServiceTests
         [InlineData(168, 160, 16)]
         public void CollatzService_FindLeastCommonAncestor_ReturnsNumber(int a, int b,int expected)
         {
-            //Arrange
-            //  Access service
+            //  Arrange
             var _collatz = serviceProvider.GetRequiredService<ICollatzService>();
-            //Act
+            //  Act
             int x = _collatz.Find_Least_Common_Ancestor(a, b).value;
-            //Assert
+            //  Assert
             x.Should().Be(expected);
         }
 
