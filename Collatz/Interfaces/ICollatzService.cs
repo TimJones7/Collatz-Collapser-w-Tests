@@ -9,8 +9,8 @@ namespace Collatz.Interfaces
 {
     public interface ICollatzService
     {
-        void Print_From_Number(int x);
+        void Print_Collatz_Chain_From_Number(int x);
         Number Find_Least_Common_Ancestor(int a, int b);
-        void Print_Distribution_From(int x);
+        void Print_Leading_Digit_Distribution_From(int x);
     }
 }

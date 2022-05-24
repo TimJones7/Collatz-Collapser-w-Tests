@@ -29,12 +29,12 @@ namespace Collatz.Services
             return _collatz.findCommonAncestor(a, b);
         }
 
-        public void Print_Distribution_From(int x)
+        public void Print_Leading_Digit_Distribution_From(int x)
         {
             _collatz.printdistributionFrom(x);
         }
 
-        public void Print_From_Number(int x)
+        public void Print_Collatz_Chain_From_Number(int x)
         {
             _collatz.PrintFromNumber(x);
         }

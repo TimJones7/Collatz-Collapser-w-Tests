@@ -16,12 +16,12 @@ var collatz = serviceProvider.GetRequiredService<ICollatzService>();
 
 //  Test Service Functions:
 //  1
-collatz.Print_From_Number(10);
+collatz.Print_Collatz_Chain_From_Number(10);
 //  2
-int x = collatz.Find_Least_Common_Ancestor(69, 1280).value;
+int x = collatz.Find_Least_Common_Ancestor(16, 5).value;
 Console.WriteLine(x);
 //  3
-collatz.Print_Distribution_From(101);
+collatz.Print_Leading_Digit_Distribution_From(101);
 
 
 

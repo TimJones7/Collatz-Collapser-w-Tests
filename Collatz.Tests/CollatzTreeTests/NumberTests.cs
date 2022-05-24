@@ -1,4 +1,4 @@
-using Collatz.CollatzTree;
+using Collatz.Collatz;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
