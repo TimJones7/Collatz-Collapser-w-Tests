@@ -1,5 +1,7 @@
+using Collatz.Collatz;
 using Collatz.Interfaces;
 using Collatz.Services;
+using FakeItEasy;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,13 +16,18 @@ namespace Collatz.Tests.ServiceTests
 {
     public class CollatzServiceTests
     {
-        
+        private readonly ICollatzService _collatzService;
+
             //  Add dependencies for tests
             ServiceProvider serviceProvider = new ServiceCollection()
                 .AddSingleton<ICollatzService, CollatzService>()
                 .BuildServiceProvider();
-        
 
+        //  Need to get faking/mocking working
+        public CollatzServiceTests()
+        {
+            _collatzService = A.Fake<ICollatzService>();
+        }
 
 
         [Theory]
@@ -33,8 +40,11 @@ namespace Collatz.Tests.ServiceTests
         {
             //  Arrange
             var _collatz = serviceProvider.GetRequiredService<ICollatzService>();
+            //A.CallTo(() => _collatzService.Find_Least_Common_Ancestor(a,b)).Returns(expected);           
+            
             //  Act
             int x = _collatz.Find_Least_Common_Ancestor(a, b).value;
+            
             //  Assert
             x.Should().Be(expected);
         }
@@ -49,11 +59,11 @@ namespace Collatz.Tests.ServiceTests
         [InlineData(3465)]
         public void CollatzService_PrintLeadingDigitDistributionFrom_PrintsDistribution(int x)
         {
-            //Arrange
+            //  Arrange
             var _collatz = serviceProvider.GetRequiredService<ICollatzService>();
-            //Act
+            //  Act
             _collatz.Print_Leading_Digit_Distribution_From(x);
-            //Assert
+            //  Assert
 
         }
 
@@ -72,6 +82,7 @@ namespace Collatz.Tests.ServiceTests
             //  Act
             _collatz.Print_Collatz_Chain_From_Number(x);
             //  Assert
+            
         }
 
 

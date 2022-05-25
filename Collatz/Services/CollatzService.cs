@@ -12,13 +12,6 @@ namespace Collatz.Services
     {
         private readonly CollatzTree _collatz;
 
-
-        //public CollatzService(CollatzTree collatz)
-        //{
-        //    _collatz = collatz;
-        //}
-
-        // Newing up the object here, because I guess Dependency Injection in a console app is different from MVC?
         public CollatzService()
         {
             _collatz = new CollatzTree();
