@@ -7,9 +7,21 @@ Console.WriteLine("Hello, Collatz!");
 Console.WriteLine(" ");
 
 //  Set up Dependencies for program
+//var serviceProvider = new ServiceCollection()
+//    .AddSingleton<ICollatzService, CollatzService>()
+//    .BuildServiceProvider();
+
+//  AddScoped => create whats need only when calling it.
+//  AddSingleton => object which exists for the life of the program
+//  AddTransient => new (different) object on each request
+
 var serviceProvider = new ServiceCollection()
-    .AddSingleton<ICollatzService, CollatzService>()
+    .AddScoped<ICollatzService, CollatzService>()
     .BuildServiceProvider();
+
+
+
+
 
 //  Access service
 var collatz = serviceProvider.GetRequiredService<ICollatzService>();
