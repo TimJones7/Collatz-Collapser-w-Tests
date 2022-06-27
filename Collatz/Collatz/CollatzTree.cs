@@ -8,15 +8,14 @@ namespace Collatz.Collatz
 {
     public class CollatzTree
     {
-        //  This {tail}  might not even be necessary?
-        public Number? bottom { get; set; }    //  which will be == 1 
+       
+        public Number? bottom { get; set; }    
 
         //  Keep track of numbers seen and what Number object it belongs to
         public SortedList<int, Number>? Numbers_Seen { get; set; }
 
 
-        //  Do not init in Constructor... only create object when needed
-        public DigitDistribution _distribution;
+        public DigitDistribution? _distribution;
 
         //  Constructor auto-sets the bottom node
         //  and adds it to "seen" list
@@ -28,7 +27,6 @@ namespace Collatz.Collatz
             Numbers_Seen.Add(1, bottom);
 
         }
-
 
         //  Method to check if path from x -> 1 exists, if not fill in
         private void checkNums(int x)
@@ -62,7 +60,6 @@ namespace Collatz.Collatz
 
         }
 
-
         public void ChainCompleter_Process(int x)
         {
             Number newNumber = CreateNumber(x);
@@ -88,19 +85,19 @@ namespace Collatz.Collatz
             {
                 newNum.Next_Number = CreateNumber(next_Num);
             }
-            //  If we have seen the next number, get that objext and set it equal to the proper one
+            //  If we have seen the next number, get that object and set it equal to the proper one
             else if (Numbers_Seen.ContainsKey(next_Num))
             {
                 newNum.Next_Number = Numbers_Seen[next_Num];
                 //  This part only matters if we want to traverse away from 1
                 if (x > next_Num)
                 {
-                    //  Every number as a num_From_Above
+                    //  Every number has a num_From_Above
                     Numbers_Seen[next_Num].num_From_Above = newNum;
                 }
                 if (x < next_Num)
                 {
-                    //  Not every number as a num_From_Below
+                    //  Not every number has a num_From_Below
                     Numbers_Seen[next_Num].num_From_Below = newNum;
                 }
             }
@@ -140,7 +137,6 @@ namespace Collatz.Collatz
         }
 
 
-
         private void listBuilder(int x, List<Number> path)
         {
             //  recursively fill a list with objects looking to the next one 
@@ -155,10 +151,6 @@ namespace Collatz.Collatz
                 listBuilder(Numbers_Seen[x].Next_Number.value, path);
             }
         }
-
-
-
-
 
         //  Find Least Common Ancestor
         public Number findCommonAncestor(int a, int b)
@@ -196,9 +188,7 @@ namespace Collatz.Collatz
                 right = right.Next_Number;
             }
             return left;
-           
         }
-
 
         //  Creating the object we need only when we need it
         //  This will also prevent double-counting digits when traversing multiple paths
@@ -208,8 +198,5 @@ namespace Collatz.Collatz
             _distribution.getTallyFromNum(this, x);
             _distribution.printDistribution();
         }
-
-
-
     }
 }
