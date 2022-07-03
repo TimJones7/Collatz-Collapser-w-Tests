@@ -8,7 +8,6 @@ namespace Collatz.Collatz
 {
     public class DigitDistribution
     {
-
         public int num_Ones { get; set; }
         public int num_Twos { get; set; }
         public int num_Threes { get; set; }
@@ -18,8 +17,6 @@ namespace Collatz.Collatz
         public int num_Sevens { get; set; }
         public int num_Eights { get; set; }
         public int num_Nines { get; set; }
-
-
 
         public void printDistribution()
         {
@@ -84,6 +81,5 @@ namespace Collatz.Collatz
             }
             tallyDigits(tree.Numbers_Seen[x]);
         }
-
     }
 }

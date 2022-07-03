@@ -21,7 +21,7 @@ namespace Collatz.Tests.CollatzTreeTests
         {
             //  Arrange
             //  Act
-            var number = new Number(x); //this function is called in the class constructor
+            var number = new Number(x);
             //  Assert
             number.Leading_Digit.Should().Be(expected);
         }

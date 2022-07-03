@@ -33,14 +33,12 @@ namespace Collatz.Collatz
             fillSteps(x);
             Number startingNum = Numbers_Seen[x];
             Number currentNum = startingNum;
-
             while (currentNum.Next_Number != null)
             {
                 //Console.WriteLine($"Current number is: {currentNum.value}, with Leading # {currentNum.Leading_Digit}");
                 Console.WriteLine($"Current number is: {currentNum.value}, Steps remaining = {currentNum.stepsToOne}");
                 currentNum = currentNum.Next_Number;
             }
-
         }
 
         public void Create_Global_Number_objs_To_Complete_Chain(int x)
@@ -67,7 +65,6 @@ namespace Collatz.Collatz
             Number next_Number = Set_Next_Number(next_Num);
             return next_Number;
         }
-        
 
         private Number Set_Next_Number(int next_Num)
         {
@@ -78,7 +75,6 @@ namespace Collatz.Collatz
             return Numbers_Seen[next_Num];
         }
 
-        
         private int findNextNum(int x)
         {
             if (x % 2 == 0)
@@ -88,14 +84,11 @@ namespace Collatz.Collatz
             return (3 * x + 1);
         }
 
-        
         public void fillSteps(int x)
         {
             if_Path_DoesntExist_Fill_In(x);
-
             List<Number> path = new List<Number>();
             listBuilder(x, path);
-
             Count_And_Fill_Steps_Remaining_For_Numbers(path);
         }
 
@@ -110,8 +103,6 @@ namespace Collatz.Collatz
             }
         }
 
-
-
         private void listBuilder(int x, List<Number> path)
         {
             path.Add(Numbers_Seen[x]);
@@ -122,7 +113,6 @@ namespace Collatz.Collatz
             }
         }
 
-      
         public Number Find_Least_Common_Ancestor(int a, int b)
         {
             Ensure_Chains_Exist(a, b);
@@ -144,9 +134,6 @@ namespace Collatz.Collatz
             return Numbers_Seen[a];
         }
 
-
-
-        
         public void Print_Distribution_From_Number(int x)
         {
             _distribution = new DigitDistribution();
