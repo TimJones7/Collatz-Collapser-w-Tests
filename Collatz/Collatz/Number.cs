@@ -9,14 +9,12 @@ namespace Collatz.Collatz
     public class Number
     {
         public int value { get; set; }
-        public Number Next_Number { get; set; } //  if value == 1 then == null
+        public Number Next_Number { get; set; }
         public Number? num_From_Below { get; set; }
         public Number? num_From_Above { get; set; }
         public int stepsToOne { get; set; }
         public int Leading_Digit { get; set; }
         public bool isPerfectSquare { get; set; }
-
-
 
         public Number(int x)
         {

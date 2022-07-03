@@ -8,46 +8,29 @@ namespace Collatz.Collatz
 {
     public class CollatzTree
     {
-       
         public Number? bottom { get; set; }    
-
-        //  Keep track of numbers seen and what Number object it belongs to
         public SortedList<int, Number>? Numbers_Seen { get; set; }
-
-
         public DigitDistribution? _distribution;
 
-        //  Constructor auto-sets the bottom node
-        //  and adds it to "seen" list
         public CollatzTree()
         {
             Numbers_Seen = new SortedList<int, Number>();
             bottom = new Number(1);
             bottom.stepsToOne = 0;
             Numbers_Seen.Add(1, bottom);
-
         }
 
-        //  Method to check if path from x -> 1 exists, if not fill in
-        private void checkNums(int x)
+        private void if_Path_DoesntExist_Fill_In(int x)
         {
             if (!Numbers_Seen.ContainsKey(x))
             {
-                ChainCompleter_Process(x);
+                Create_Global_Number_objs_To_Complete_Chain(x);
             }
         }
 
-        //  Print numbers from {}
-        //  If doesn't exist, fill in
         public void PrintFromNumber(int x)
         {
-            //  Check if number has been seen.
-            //  If not start process of adding numbers until we find one we've seen
-            checkNums(x);
             fillSteps(x);
-            //  The following code should only execute
-            //  if the chain has been completed and exists
-            //  from x -> 1 
             Number startingNum = Numbers_Seen[x];
             Number currentNum = startingNum;
 
@@ -60,50 +43,42 @@ namespace Collatz.Collatz
 
         }
 
-        public void ChainCompleter_Process(int x)
+        public void Create_Global_Number_objs_To_Complete_Chain(int x)
         {
             Number newNumber = CreateNumber(x);
         }
 
         private Number CreateNumber(int x)
         {
-            //  Entry needs created and then look to see if next number exists,
-            //  if so, then set new number's next_number to the Number object
-            //  that it is and set the next numbers from above/below value
-            //  as the number we just created
-            //  If the next number doesn't exist, we want to recurse until
-            //  we arrive at a number that does exist
             Number newNum = new Number(x);
-
-            //  Add number to Numbers_Seen list
-            Numbers_Seen.Add(x, newNum);
-
-            int next_Num = findNextNum(x);
-
-            //  If we've not seen the next number, recursively create it
-            if (!Numbers_Seen.ContainsKey(next_Num))
-            {
-                newNum.Next_Number = CreateNumber(next_Num);
-            }
-            //  If we have seen the next number, get that object and set it equal to the proper one
-            else if (Numbers_Seen.ContainsKey(next_Num))
-            {
-                newNum.Next_Number = Numbers_Seen[next_Num];
-                //  This part only matters if we want to traverse away from 1
-                if (x > next_Num)
-                {
-                    //  Every number has a num_From_Above
-                    Numbers_Seen[next_Num].num_From_Above = newNum;
-                }
-                if (x < next_Num)
-                {
-                    //  Not every number has a num_From_Below
-                    Numbers_Seen[next_Num].num_From_Below = newNum;
-                }
-            }
+            Record_Number_As_Seen_Globally(x, newNum);
+            newNum.Next_Number = Find_and_Set_Next_Number(x);
             return newNum;
         }
 
+        private void Record_Number_As_Seen_Globally(int x, Number newNum)
+        {
+            Numbers_Seen.Add(x, newNum);
+        }
+
+        private Number Find_and_Set_Next_Number(int x)
+        {
+            int next_Num = findNextNum(x);
+            Number next_Number = Set_Next_Number(next_Num);
+            return next_Number;
+        }
+        
+
+        private Number Set_Next_Number(int next_Num)
+        {
+            if (!Numbers_Seen.ContainsKey(next_Num))
+            {
+                return CreateNumber(next_Num);
+            }
+            return Numbers_Seen[next_Num];
+        }
+
+        
         private int findNextNum(int x)
         {
             if (x % 2 == 0)
@@ -113,20 +88,19 @@ namespace Collatz.Collatz
             return (3 * x + 1);
         }
 
-        //  Refactored, shouldn't double-count now.
+        
         public void fillSteps(int x)
         {
-            //  Check if number has been seen.
-            //  If not, complete chain
-            checkNums(x);
+            if_Path_DoesntExist_Fill_In(x);
 
-            //  Now we want to traverse the chain from x -> 1
-            //  adding each Number to a list
             List<Number> path = new List<Number>();
             listBuilder(x, path);
 
-            //  Loop backwards thru list
-            //  Since '1' is set, we don't have to start at "bottom"
+            Count_And_Fill_Steps_Remaining_For_Numbers(path);
+        }
+
+        private void Count_And_Fill_Steps_Remaining_For_Numbers(List<Number> path)
+        {
             for (int i = path.Count - 2; i >= 0; i--)
             {
                 if (path[i].stepsToOne == 0)
@@ -137,66 +111,80 @@ namespace Collatz.Collatz
         }
 
 
+
         private void listBuilder(int x, List<Number> path)
         {
-            //  recursively fill a list with objects looking to the next one 
-
             path.Add(Numbers_Seen[x]);
-            //  After adding the object we want to see what the next number is
-            //  if next number exists, we want to pass it in and call function again
-            //  if not, we are done filling list.
+            
             if (Numbers_Seen[x].Next_Number != null)
             {
-                //  Get value is next number and the path object 
                 listBuilder(Numbers_Seen[x].Next_Number.value, path);
             }
         }
 
-        //  Find Least Common Ancestor
-        public Number findCommonAncestor(int a, int b)
+      
+        public Number Find_Least_Common_Ancestor(int a, int b)
         {
-            //  Make sure chains are complete
-            checkNums(a);
-            checkNums(b);
+            Ensure_Chains_Exist(a, b);
+            (Number left, Number right) = Initialize_Variables(a, b);
+            Number commonAncestor = Walk_To_Common_Ancestor(left, right);
+            return commonAncestor;
+        }
+
+        private (Number, Number) Initialize_Variables(int a, int b) 
+        {
+            Number left = Get_Already_Seen_Number(a);
+            Number right = Get_Already_Seen_Number(b);
+            (left, right) = Set_Starting_Numbers(left, right);
+            return (left, right);
+        }
+        
+        private Number Get_Already_Seen_Number(int a)
+        {
+            return Numbers_Seen[a];
+        }
+
+
+
+        
+        public void Print_Distribution_From_Number(int x)
+        {
+            _distribution = new DigitDistribution();
+            _distribution.Get_Number_Distribution_of_Tree_From_Number(this, x);
+            _distribution.printDistribution();
+        }
+
+        private void Ensure_Chains_Exist(int a, int b)
+        {
             fillSteps(a);
             fillSteps(b);
+        }
 
-            //  Vars we need and init
-            Number left = Numbers_Seen[a];
-            Number right = Numbers_Seen[b];
-
-            //  When looking at two paths, the LCA will have a 'steps to one' value less than the smallest number's steps-to-one value
-            //  We need to start looking when the steps to one values are the same. 
-            while(left.stepsToOne != right.stepsToOne)
+        private (Number,Number) Set_Starting_Numbers(Number left, Number right)
+        {
+            while (left.stepsToOne != right.stepsToOne)
             {
                 // Get the bigger object and walk toward 1
-                if(left.stepsToOne > right.stepsToOne)
+                if (left.stepsToOne > right.stepsToOne)
                 {
                     left = left.Next_Number;
                 }
-                if(right.stepsToOne > left.stepsToOne)
+                if (right.stepsToOne > left.stepsToOne)
                 {
                     right = right.Next_Number;
                 }
             }
+            return (left, right);
+        }
 
-            //  At this point, both numbers should be the same steps from one
-            //  While left and right are not the same number, step them both toward 1
-            while(left.value != right.value)
+        private Number Walk_To_Common_Ancestor(Number left, Number right)
+        {
+            while (left.value != right.value)
             {
                 left = left.Next_Number;
                 right = right.Next_Number;
             }
             return left;
-        }
-
-        //  Creating the object we need only when we need it
-        //  This will also prevent double-counting digits when traversing multiple paths
-        public void printdistributionFrom(int x)
-        {
-            _distribution = new DigitDistribution();
-            _distribution.getTallyFromNum(this, x);
-            _distribution.printDistribution();
         }
     }
 }

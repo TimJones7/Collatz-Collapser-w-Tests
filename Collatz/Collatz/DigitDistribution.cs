@@ -36,7 +36,6 @@ namespace Collatz.Collatz
 
         public void tallyDigits(Number num)
         {
-            //  Dummy var for current Number
             Number current = num;
 
             switch (num.Leading_Digit)
@@ -70,26 +69,21 @@ namespace Collatz.Collatz
                     break;
             }
 
-
             if (current.Next_Number != null)
             {
                 tallyDigits(current.Next_Number);
             }
         }
 
-        public void getTallyFromNum(CollatzTree tree, int x)
+        public void Get_Number_Distribution_of_Tree_From_Number(CollatzTree tree, int x)
         {
-            //  If trying to Tally from a number that doesn't exist, we have to complete the chain
-            if (!tree.Numbers_Seen.ContainsKey(x))
+            bool have_we_seen_number = tree.Numbers_Seen.ContainsKey(x);
+            if (!have_we_seen_number)
             {
-                tree.ChainCompleter_Process(x);
+                tree.Create_Global_Number_objs_To_Complete_Chain(x);
             }
-
-            //  Assume code from here on out works only if chain is complete.
             tallyDigits(tree.Numbers_Seen[x]);
         }
-
-
 
     }
 }
