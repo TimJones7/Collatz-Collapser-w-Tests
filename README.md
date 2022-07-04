@@ -1,7 +1,7 @@
 <img src="https://i.imgur.com/eVa5MPX.png" width="500" height="400" />
 
 # Collatz Collapser 
-> with x-unit testing using FluentAssertions
+> This is the functionality behind the Collatz Collapser Minimal API... with x-unit testing using FluentAssertions
 
 Collatz Collapser is a small console app for calculating the paths that numbers take en route to the eventual ```1-4-2``` pattern proposted by Lothar Collatz in 1937, as well as various other statistics.
 #
