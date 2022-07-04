@@ -36,8 +36,7 @@ namespace Collatz.Tests.ServiceTests
         public void CollatzService_FindLeastCommonAncestor_ReturnsNumber(int a, int b,int expected)
         {
             //  Arrange
-            var _collatz = serviceProvider.GetRequiredService<ICollatzService>();
-            //A.CallTo(() => _collatzService.Find_Least_Common_Ancestor(a,b)).Returns(expected);           
+            var _collatz = serviceProvider.GetRequiredService<ICollatzService>();          
             
             //  Act
             int x = _collatz.Find_Least_Common_Ancestor(a, b).value;
