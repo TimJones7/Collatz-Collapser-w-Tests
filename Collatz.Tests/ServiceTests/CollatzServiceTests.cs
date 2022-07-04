@@ -17,18 +17,15 @@ namespace Collatz.Tests.ServiceTests
     public class CollatzServiceTests
     {
         private readonly ICollatzService _collatzService;
-
-            //  Add dependencies for tests
+        
             ServiceProvider serviceProvider = new ServiceCollection()
                 .AddSingleton<ICollatzService, CollatzService>()
                 .BuildServiceProvider();
 
-        //  Need to get faking/mocking working
         public CollatzServiceTests()
         {
             _collatzService = A.Fake<ICollatzService>();
         }
-
 
         [Theory]
         [InlineData(69,1280, 40)]
@@ -49,7 +46,6 @@ namespace Collatz.Tests.ServiceTests
             x.Should().Be(expected);
         }
 
-
         [Theory]
         [InlineData(6)]
         [InlineData(12)]
@@ -66,7 +62,6 @@ namespace Collatz.Tests.ServiceTests
             //  Assert
 
         }
-
 
         [Theory]
         [InlineData(6)]
