@@ -50,6 +50,10 @@ Current features
 * Print Collatz Chain 
 * Find Least Common Ancestor of Two numbers
 * Print Leading Digit Distribution on Collatz path
+<img src="https://i.imgur.com/gA5WDYy.png" width="500" height="400" />
+* Uncle Bob approved short methods with meaningful names that do one thing
+<img src="https://i.imgur.com/RGtF1PJ.png" width="500" height="400" />
+
 
 
 ## Thanks
